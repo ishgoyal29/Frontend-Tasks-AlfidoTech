@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List App</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f9; text-align: center; padding: 30px; }
+    h1 { color: #333; }
+    #taskInput { padding: 10px; width: 60%; font-size: 16px; }
+    button { padding: 10px 15px; font-size: 16px; margin-left: 5px; background: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
+    ul { list-style-type: none; padding: 0; margin-top: 20px; }
+    li { background: white; margin: 5px auto; padding: 10px; width: 60%; border: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
+    .deleteBtn { background: red; padding: 5px 10px; border: none; color: white; border-radius: 3px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>My To-Do List</h1>
+  <input type="text" id="taskInput" placeholder="Enter a task...">
+  <button onclick="addTask()">Add Task</button>
+  <ul id="taskList"></ul>
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById("taskInput");
+      const taskValue = taskInput.value.trim();
+      if (taskValue === "") return;
+      const li = document.createElement("li");
+      li.textContent = taskValue;
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "X";
+      deleteBtn.classList.add("deleteBtn");
+      deleteBtn.onclick = function () { li.remove(); };
+      li.appendChild(deleteBtn);
+      document.getElementById("taskList").appendChild(li);
+      taskInput.value = "";
+    }
+  </script>
+</body>
+</html>
